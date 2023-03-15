@@ -1,0 +1,24 @@
+Design a test that ensures .docx files can be stored in the My Files section of FileCloud for a user and that multiple versions are stored.
+
+
+Initialize variables for lower and upper limits of concurrent users (e.g., lower = 1, upper = 1000).
+
+Define a function to test concurrent uploads with a given number of concurrent users:
+a. Create a ThreadPoolExecutor with the specified number of concurrent users.
+b. For each user, create a separate task to upload a file using the FileCloudPage instance.
+c. Run all tasks concurrently using the ThreadPoolExecutor.
+d. Wait for all tasks to finish and collect the results (success or failure).
+e. Check if all tasks were successful. If yes, return True; otherwise, return False.
+
+Define a function to find the maximum number of concurrent users before the system breaks using binary search:
+a. As long as the lower bound is less than or equal to the upper bound:
+    - Calculate the midpoint between the lower and upper bounds (e.g., mid = (lower + upper) // 2).
+    - Call the test function with the midpoint as the number of concurrent users.
+    - If the test is successful, set the lower limit to mid + 1 (the system can handle more concurrent users).
+    -If the test fails, set the upper limit to mid - 1 (the system cannot handle as many concurrent users).
+b. Return the maximum number of concurrent users (lower - 1) before the system breaks.
+
+Define a pytest function to test the maximum number of concurrent users:
+a. Call the find function to determine the maximum number of concurrent users.
+b. Print the maximum number of concurrent users.
+c. Verify that the maximum number of concurrent users is greater than 0.
