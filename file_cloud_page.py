@@ -51,7 +51,7 @@ class FileCloudPage:
         return response
 
     def update_user_role(self, user_name, role_name):
-        update_user_role_url = f"{self.base_url}/core/updateroleifany"
+        update_user_role_url = f"{self.base_url}/admin/updaterole"
         data = {
             "sessionid": self.session_id,
             "username": user_name,
